@@ -130,7 +130,7 @@ def prediction_intervals(model: Callable, x_pred, ls_res: OptimizeResult, level=
     :type jac: Callable
     :param weights: The weights of the datapoints used for the fitting.
     :type weights: np.ndarray
-    :param kwargs: 
+    :param kwargs:
     :return:
     """
 
