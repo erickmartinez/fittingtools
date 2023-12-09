@@ -1,0 +1,10 @@
+LICENSE
+README.md
+setup.py
+fittingtools/__init__.py
+fittingtools/least_squares.py
+fittingtools.egg-info/PKG-INFO
+fittingtools.egg-info/SOURCES.txt
+fittingtools.egg-info/dependency_links.txt
+fittingtools.egg-info/requires.txt
+fittingtools.egg-info/top_level.txt
