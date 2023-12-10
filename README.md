@@ -77,6 +77,21 @@ x0 = np.array([1.0, 1.0, 0.0])
 res_lsq = least_squares(res, x0, args=(t_train, y_train), loss='cauchy', f_scale=0.1,)
 ```
 
+Get the confidence intervals for the optimzied parameters:
+```python
+popt = res_lsq.x
+parameters_ci = fls.confidence_interval(ls_res=res_lsq, level=0.95)
+for i, p, lci, uci in zip(range(len(popt)), popt, parameters_ci[:,0], parameters_ci[:,1]):
+  print(f'beta[{i}]: {p:>7.3f}, 95% CI: [{lci:>7.3f}, {uci:>7.3f}]')
+```
+
+```sh
+beta[0]:   0.477, 95% CI: [  0.463,   0.490]
+beta[1]:   2.052, 95% CI: [  2.028,   2.076]
+beta[2]:  -0.864, 95% CI: [ -0.895,  -0.833]
+```
+
+
 Generate the prediction intervals for the fit (95% confidence level)
 ```python
 t_test = np.linspace(t_min, t_max, n_points * 10)
