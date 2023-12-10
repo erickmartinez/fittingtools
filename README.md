@@ -6,13 +6,13 @@ Installation
 ``pip install fittingtools``
 
 # Basic usage: exponential model
-``
+```python
 import fittingtools.least_squares as fls
-``
+```
 
 Define the exponential model:
 
-```
+```python
 import numpy as np
 from numpy.random import default_rng
 from scipy.optimize import least_squares
@@ -24,7 +24,7 @@ def model(t, b):
 
 Generate noisy data
 
-```
+```python
 def gen_data(t, a, b, c, noise=0., n_outliers=0, seed=None):
     rng = default_rng(seed)
 
@@ -49,7 +49,7 @@ y_train = gen_data(t_train, a, b, c, noise=0.1, n_outliers=3)
 ```
 
 Define the residuals
-```
+```python
 def res(b, t, y):
     return model(t, b) - y
 ```
@@ -57,7 +57,7 @@ def res(b, t, y):
 _Optional_:
 
 Define the jacobian for the model
-```
+```python
 def jac(b, t, y):
     n, p = len(t), len(b)
     j = np.empty((n, p), dtype=np.float64)
@@ -70,13 +70,13 @@ def jac(b, t, y):
 
 Fit the data using `scipy.optimize.least_squares`:
     
-```
+```python
 x0 = np.array([1.0, 1.0, 0.0])
 res_lsq = least_squares(res, x0, args=(t_train, y_train), loss='cauchy', f_scale=0.1,)
 ```
 
 Generate the prediction intervals for the fit (95% confidence level)
-```
+```python
 t_test = np.linspace(t_min, t_max, n_points * 10)
 y_true = gen_data(t_test, a, b, c)
 
@@ -86,7 +86,7 @@ y_pred, delta = fls.prediction_intervals(
 ```
 
 Plot the data
-```
+```python
 import matplotlib.pyplot as plt
 
 fig, ax = plt.subplots(1, 1, constrained_layout=True)
@@ -100,3 +100,5 @@ ax.set_ylabel('y')
 ax.legend(loc='best', frameon=True)
 plt.show()
 ```
+
+![Example prediction intervals exponential fit](./examples/prediction_intervals_soft_l1.png)
