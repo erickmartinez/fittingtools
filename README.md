@@ -3,7 +3,9 @@ Some tools built upon scipy's least squares fitting.
 
 Installation
 
-``pip install fittingtools``
+```sh
+pip install fittingtools
+```
 
 # Basic usage: exponential model
 ```python
