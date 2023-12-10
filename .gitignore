@@ -2,3 +2,5 @@
 ./build
 ./dist/*
 ./build/*
+./fittingtools.egg-info
+./fittingtools.egg-info/*

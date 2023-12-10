@@ -3,7 +3,7 @@ import numpy as np
 from scipy.linalg import svd
 from scipy.optimize import OptimizeResult, OptimizeWarning
 from scipy.stats.distributions import t, f
-from typing import Callable
+from typing import Callable, List
 
 
 def get_weights(std_x: [np.ndarray, float], std_y: [np.ndarray, float] = 0):
@@ -104,7 +104,7 @@ def confidence_interval(ls_res: OptimizeResult, level: float = 0.95, absolute_si
 
     ci = np.zeros((p, 2), dtype=np.float64)
 
-    for i, p, var in zip(range(n), p, np.diag(pcov)):
+    for i, p, var in zip(range(n), ls_res.x, np.diag(pcov)):
         sigma = var ** 0.5
         ci[i, :] = [p - sigma * tval, p + sigma * tval]
 
@@ -131,7 +131,9 @@ def prediction_intervals(model: Callable, x_pred, ls_res: OptimizeResult, level=
     :param weights: The weights of the datapoints used for the fitting.
     :type weights: np.ndarray
     :param kwargs:
-    :return:
+    :return: The predicted values at the given x and the deltas for each prediction
+        [y_predicction, delta]
+    :rtype: List[np.ndarray, np.ndarray]
     """
 
     simultaneous = kwargs.get('simultaneous', False)
