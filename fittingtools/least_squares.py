@@ -189,10 +189,10 @@ def prediction_intervals(model: Callable, x_pred, ls_res: OptimizeResult, level=
 
     if new_observation:
         if not weights is None:
-            errorVar = mse / weights
+            error_var = mse / weights
         else:
-            errorVar = mse * np.ones(delta.shape[0])
-        varpred += errorVar
+            error_var = mse * np.ones(delta.shape[0])
+        varpred += error_var
 
     if simultaneous:
         if new_observation:
