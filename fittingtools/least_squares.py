@@ -33,7 +33,7 @@ def ls_covariance(ls_res: OptimizeResult, absolute_sigma=False):
     """
     popt = ls_res.x
     ysize = len(ls_res.fun)
-    cost = 2 * ls_res.cost  # res.cost is half sum of squares!
+    cost = 2. * ls_res.cost  # res.cost is half sum of squares!
     s_sq = cost / (ysize - popt.size)
 
     # Do Moore-Penrose inverse discarding zero singular values.
@@ -182,10 +182,10 @@ def prediction_intervals(model: Callable, x_pred, ls_res: OptimizeResult, level=
     mse = (np.linalg.norm(residuals)) ** 2. / (n - rankJ)
 
     # Calculate Sigma if usingJ
-    Sigma = mse * pinvJTJ
+    sigma = mse * pinvJTJ
 
     # Compute varpred
-    varpred = np.sum(np.dot(delta, Sigma) * delta, axis=1)
+    varpred = np.sum(np.dot(delta, sigma) * delta, axis=1)
 
     if new_observation:
         if not weights is None:

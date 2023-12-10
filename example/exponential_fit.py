@@ -53,6 +53,7 @@ def main():
     )
 
     fig, ax = plt.subplots(1, 1, constrained_layout=True)
+    fig.set_size_inches(4., 3.)
     ax.plot(t_train, y_train, 'o')
     ax.fill_between(t_test, y_pred-delta, y_pred+delta, color='C0', alpha=0.5, label='95 predint')
     ax.plot(t_test, y_true, 'k', linewidth=2, label='true')
@@ -61,6 +62,7 @@ def main():
     ax.set_xlabel('x')
     ax.set_ylabel('y')
     ax.legend(loc='best', frameon=True)
+    fig.savefig('prediction_intervals_soft_l1.png')
     plt.show()
 
 
