@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='fittingtools',
-    version='0.1.0',
+    version='0.1.1',
     description='Basic tools to generate confidence intervals and prediction confidence'
                 'intervals based on scipy.optimize.least_squares',
     url='https://github.com/erickmartinez/fittingtools',
