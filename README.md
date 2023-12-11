@@ -74,7 +74,7 @@ Fit the data using `scipy.optimize.least_squares`:
     
 ```python
 x0 = np.array([1.0, 1.0, 0.0])
-res_lsq = least_squares(res, x0, args=(t_train, y_train), loss='cauchy', f_scale=0.1,)
+res_lsq = least_squares(res, x0, args=(t_train, y_train), loss='cauchy', f_scale=0.1, jac=jac)
 ```
 
 Get the confidence intervals for the optimzied parameters:
