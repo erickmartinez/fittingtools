@@ -114,7 +114,7 @@ def confidence_interval(ls_res: OptimizeResult, level: float = 0.95, absolute_si
 def prediction_intervals(model: Callable, x_pred, ls_res: OptimizeResult, level=0.95,
                          jac:Callable=None, weights:np.ndarray=None, **kwargs):
     """
-    Estimates the prediction interval for a least squares fit result obtained by
+    Estimates the prediction interval for a least` squares fit result obtained by
     scipy.optimize.least_squares.
 
     :param model: The model used to fit the data
