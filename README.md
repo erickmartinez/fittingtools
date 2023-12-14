@@ -118,4 +118,4 @@ ax.legend(loc='best', frameon=True)
 plt.show()
 ```
 
-![Example prediction intervals exponential fit](./examples/prediction_intervals_soft_l1.png)
+![Example prediction intervals exponential fit (soft_l1)](./examples/prediction_intervals_soft_l1.png)
