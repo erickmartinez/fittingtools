@@ -86,9 +86,9 @@ for i, p, lci, uci in zip(range(len(popt)), popt, parameters_ci[:,0], parameters
 ```
 
 ```sh
-beta[0]:   0.473, 95% CI: [  0.365,   0.581]
-beta[1]:   2.024, 95% CI: [  1.772,   2.277]
-beta[2]:  -1.023, 95% CI: [ -1.406,  -0.641]
+beta[0]:   0.492, 95% CI: [  0.344,   0.640]
+beta[1]:   2.096, 95% CI: [  1.829,   2.364]
+beta[2]:  -1.039, 95% CI: [ -1.391,  -0.686]
 ```
 
 
@@ -108,9 +108,9 @@ import matplotlib.pyplot as plt
 
 fig, ax = plt.subplots(1, 1, constrained_layout=True)
 ax.plot(t_train, y_train, 'o')
-ax.fill_between(t_test, y_pred-delta, y_pred+delta, color='C0', alpha=0.5, label='95 predint')
+ax.fill_between(t_test, y_pred - delta, y_pred + delta, color='C0', alpha=0.5, label='95% intervals')
 ax.plot(t_test, y_true, 'k', linewidth=2, label='true')
-ax.plot(t_test, y_pred, linewidth=2, label='soft_l1')
+ax.plot(t_test, y_pred, linewidth=2, label='cauchy')
 
 ax.set_xlabel('x')
 ax.set_ylabel('y')
@@ -118,4 +118,4 @@ ax.legend(loc='best', frameon=True)
 plt.show()
 ```
 
-![Example prediction intervals exponential fit (soft_l1)](./examples/prediction_intervals_soft_l1.png)
+![Example prediction intervals exponential fit (cauchy)](./examples/prediction_intervals_cauchy.png)
