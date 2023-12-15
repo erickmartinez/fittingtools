@@ -54,6 +54,11 @@ def main():
     t_test = np.linspace(t_min, t_max, n_points * 10)
     y_true = gen_data(t_test, a, b, c)
 
+    popt = res_lsq.x
+    parameters_ci = fls.confidence_interval(ls_res=res_lsq, level=0.95)
+    for i, p, lci, uci in zip(range(len(popt)), popt, parameters_ci[:, 0], parameters_ci[:, 1]):
+        print(f'beta[{i}]: {p:>7.3f}, 95% CI: [{lci:>7.3f}, {uci:>7.3f}]')
+
     y_pred, delta = fls.prediction_intervals(
         model=model, x_pred=t_test, ls_res=res_lsq, jac=jac
     )
@@ -61,14 +66,14 @@ def main():
     fig, ax = plt.subplots(1, 1, constrained_layout=True)
     fig.set_size_inches(4., 3.)
     ax.plot(t_train, y_train, 'o')
-    ax.fill_between(t_test, y_pred - delta, y_pred + delta, color='C0', alpha=0.5, label='95 predint')
+    ax.fill_between(t_test, y_pred - delta, y_pred + delta, color='C0', alpha=0.5, label='95% intervals')
     ax.plot(t_test, y_true, 'k', linewidth=2, label='true')
-    ax.plot(t_test, y_pred, linewidth=2, label='soft_l1')
+    ax.plot(t_test, y_pred, linewidth=2, label='cauchy')
 
     ax.set_xlabel('x')
     ax.set_ylabel('y')
     ax.legend(loc='best', frameon=True)
-    fig.savefig('prediction_intervals_soft_l1.png')
+    fig.savefig('prediction_intervals_cauchy.png')
     plt.show()
 
 

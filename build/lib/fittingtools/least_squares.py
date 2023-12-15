@@ -34,7 +34,6 @@ def ls_covariance(ls_res: OptimizeResult, absolute_sigma=False):
     popt = ls_res.x
     ysize = len(ls_res.fun)
     cost = 2. * ls_res.cost  # res.cost is half sum of squares!
-    s_sq = cost / (ysize - popt.size)
 
     # Do Moore-Penrose inverse discarding zero singular values.
     _, s, VT = svd(ls_res.jac, full_matrices=False)
@@ -42,7 +41,6 @@ def ls_covariance(ls_res: OptimizeResult, absolute_sigma=False):
     s = s[s > threshold]
     VT = VT[:s.size]
     pcov = np.dot(VT.T / s ** 2, VT)
-    pcov = pcov * s_sq
 
     if pcov is None or np.isnan(pcov).any():
         # indeterminate covariance
@@ -112,9 +110,9 @@ def confidence_interval(ls_res: OptimizeResult, level: float = 0.95, absolute_si
 
 
 def prediction_intervals(model: Callable, x_pred, ls_res: OptimizeResult, level=0.95,
-                         jac:Callable=None, weights:np.ndarray=None, **kwargs):
+                         jac: Callable = None, weights: np.ndarray = None, **kwargs):
     """
-    Estimates the prediction interval for a least squares fit result obtained by
+    Estimates the prediction interval for a least` squares fit result obtained by
     scipy.optimize.least_squares.
 
     :param model: The model used to fit the data
@@ -166,7 +164,7 @@ def prediction_intervals(model: Callable, x_pred, ls_res: OptimizeResult, level=
                 change[i] = fdiffstep * (nb + float(nb == 0))
             else:
                 change[i] = fdiffstep * beta[i]
-            predplus = model(x_pred, beta+change)
+            predplus = model(x_pred, beta + change)
             delta[:, i] = (predplus - y_pred) / change[i]
     else:
         delta = jac(beta, x_pred, y_pred)
@@ -201,7 +199,7 @@ def prediction_intervals(model: Callable, x_pred, ls_res: OptimizeResult, level=
             sch = [rankJ + 1]
         else:
             sch = rankJ
-        crit = np.sqrt(sch * (f.ppf(1.0 - alpha, sch, n - rankJ) ) )
+        crit = np.sqrt(sch * (f.ppf(1.0 - alpha, sch, n - rankJ)))
     else:
         from scipy.stats.distributions import t
         crit = t.ppf(1.0 - alpha / 2.0, n - rankJ)
@@ -209,6 +207,3 @@ def prediction_intervals(model: Callable, x_pred, ls_res: OptimizeResult, level=
     delta = np.sqrt(varpred) * crit
 
     return y_pred, delta
-
-
-
