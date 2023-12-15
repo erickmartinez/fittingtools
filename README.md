@@ -86,9 +86,9 @@ for i, p, lci, uci in zip(range(len(popt)), popt, parameters_ci[:,0], parameters
 ```
 
 ```sh
-beta[0]:   0.477, 95% CI: [  0.463,   0.490]
-beta[1]:   2.052, 95% CI: [  2.028,   2.076]
-beta[2]:  -0.864, 95% CI: [ -0.895,  -0.833]
+beta[0]:   0.473, 95% CI: [  0.365,   0.581]
+beta[1]:   2.024, 95% CI: [  1.772,   2.277]
+beta[2]:  -1.023, 95% CI: [ -1.406,  -0.641]
 ```
 
 
@@ -118,4 +118,4 @@ ax.legend(loc='best', frameon=True)
 plt.show()
 ```
 
-![Example prediction intervals exponential fit](./examples/prediction_intervals_soft_l1.png)
+![Example prediction intervals exponential fit (soft_l1)](./examples/prediction_intervals_soft_l1.png)
