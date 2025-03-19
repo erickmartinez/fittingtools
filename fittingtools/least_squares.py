@@ -6,8 +6,19 @@ from scipy.stats.distributions import t, f
 from typing import Callable, List
 
 
-def get_weights(std_x: [np.ndarray, float], std_y: [np.ndarray, float] = 0):
+def get_weights(std_x: [np.ndarray, float], std_y: [np.ndarray, float] = 0) -> np.ndarray:
+    """
+    Creates a vector of weights considering the standard deviation on the x and y data
+    :param std_x: The standard deviation of the x data
+    :type np.ndarray
+    :param std_y: The standard deviation of the y data
+    :type np.ndarray
+    :return: An array with the weights for the minimization
+    :rtype np.ndarray
+    """
     s2 = std_x ** 2. + std_y ** 2.
+    # Add a constant to avoid division by zero
+    s2 += np.median(std_x)
     return 1. / s2
 
 
