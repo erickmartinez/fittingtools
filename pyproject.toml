@@ -1,0 +1,24 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fittingtools"
+version = "0.1.3"
+authors = [
+    {name='Erick Martinez Loran', email='erickrmartinez@gmail.com'}
+]
+
+description = "Tools to get prediction intervals when using scipy's least_squares minimizer"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/erickmartinez/fittingtools"
+Issues = "https://github.com/erickmartinez/fittingtools/issues"

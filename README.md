@@ -8,8 +8,10 @@ pip install fittingtools
 ```
 
 # Basic usage: exponential model
+
 ```python
-import fittingtools.least_squares as fls
+
+from src import fittingtools as fls
 ```
 
 Define the exponential model:
