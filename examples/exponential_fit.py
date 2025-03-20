@@ -1,4 +1,4 @@
-from src import fittingtools as fls
+import fittingtools as fls
 import numpy as np
 from numpy.random import default_rng
 from scipy.optimize import least_squares

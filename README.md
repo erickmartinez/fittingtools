@@ -11,7 +11,7 @@ pip install fittingtools
 
 ```python
 
-from src import fittingtools as fls
+import fittingtools.least_squares as fls
 ```
 
 Define the exponential model:
